@@ -6,12 +6,12 @@
 # @File    : App.py
 # @Software: PyCharm
 
-from page.BasePage import BasePage
-from page.MainPage import MainPage
+from pages.BasePage import BasePage
+from pages.MainPage import MainPage
 
 
 class App(BasePage):
     @classmethod
-    def main(cls):
-        cls.getClient().restart_app()
+    def main(cls, platform):
+        cls.getClient().restart_app(platform)
         return MainPage()

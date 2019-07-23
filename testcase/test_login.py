@@ -6,18 +6,21 @@
 # @File    : test_login.py
 # @Software: PyCharm
 import pytest
+from appium.webdriver.webdriver import WebDriver
 
-from page.App import App
+from pages.App import App
 
 
 class TestLogin(object):
+    driver: WebDriver
 
 
-
-
-
-    def test_login(self):
-        App.main().go_to_profile().go_to_login()
-
+    def test_login(self, platform):
+        print(platform)
+        App.main(platform).go_to_profile().go_to_login().login_by_phone("13000000000")
 
         # self.loginPage.back()
+
+
+if __name__ == "__main__":
+    pytest.main("pytest --platform=ios test_login.py")

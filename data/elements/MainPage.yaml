@@ -1,0 +1,24 @@
+# 主页元素配置
+
+#
+#  ID = "id"
+#  XPATH = "xpath"
+#  LINK_TEXT = "link text"
+#  PARTIAL_LINK_TEXT = "partial link text"
+#  NAME = "name"
+#  TAG_NAME = "tag name"
+#  CLASS_NAME = "class name"
+#  CSS_SELECTOR = "css selector"
+
+
+# ios
+ios:
+  _profile_button:
+    by: xpath
+    value: '//XCUIElementTypeApplication[@name="保险驾到"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeButton[5]'
+
+# android
+android:
+  _profile_button:
+    by: xpath
+    value: '//android.widget.LinearLayout/android.widget.RelativeLayout[5]/android.widget.LinearLayout/android.widget.ImageView'

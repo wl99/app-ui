@@ -1,32 +1,43 @@
 
 install_app:
-  server: http://localhost:4723/wd/hub
+  server: http://localhost:5723/wd/hub
   implicitly_wait: 10
   caps:
     android:
       platformName: android
-      deviceName: hogwarts
+      deviceName: huawei
       appPackage: com.tenbent.bxjd
       appActivity: .module.main.ui.activity.MainActivity
       autoGrantPermissions: true
     ios:
-
+      platformName: ios
+      automationName: xcuitest
+      deviceName: iPhone Xs
+      platformVersion: 12.2
+      app: /Users/john/Library/Developer/Xcode/DerivedData/insuranceArrive-eqceuqqvmfnqcjhbzavcsoevftae/Build/Products/Debug-iphonesimulator/insuranceArrive.app
 
 
 restart_app:
-  server: http://localhost:4723/wd/hub
+  server: http://localhost:5723/wd/hub
   implicitly_wait: 10
   caps:
     android:
       platformName: android
-      deviceName: hogwarts
+      deviceName: huawei
       appPackage: com.tenbent.bxjd
       appActivity: .module.main.ui.activity.MainActivity
       autoGrantPermissions: true
       noReset: true
-      unicodeKeyboard: true
-      resetKeyboard: true
-    ios: {}
+      automationName: UiAutomator2
+      #unicodeKeyboard: true
+      #resetKeyboard: true
+    ios:
+      platformName: ios
+      automationName: xcuitest
+      deviceName: iPhone Xs
+      platformVersion: 12.2
+      noReset: true
+      app: /Users/john/Library/Developer/Xcode/DerivedData/insuranceArrive-eqceuqqvmfnqcjhbzavcsoevftae/Build/Products/Debug-iphonesimulator/insuranceArrive.app
     wxmp: {}
 
 

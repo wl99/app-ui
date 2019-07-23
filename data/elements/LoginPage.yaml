@@ -1,0 +1,36 @@
+# 手机登陆页面元素配置
+
+#
+#  ID = "id"
+#  XPATH = "xpath"
+#  LINK_TEXT = "link text"
+#  PARTIAL_LINK_TEXT = "partial link text"
+#  NAME = "name"
+#  TAG_NAME = "tag name"
+#  CLASS_NAME = "class name"
+#  CSS_SELECTOR = "css selector"
+# android
+android:
+  _phone_input:
+    by: id
+    value: 'login_phone_iv'
+
+# ios
+ios:
+  _phone_input:
+    by: class name
+    value: 'XCUIElementTypeStaticText'
+  _clear_btn:
+    by: id
+    value: cha 2
+  _next_btn:
+    by: id
+    value: next new
+  _yzm_input:
+    by: class name
+    value: 'XCUIElementTypeStaticText'
+  _ok_btn:
+    by: id
+    value: next ok
+
+
