@@ -1,0 +1,13 @@
+android:
+  退出登陆:
+    by: id
+    value: 'login_phone_iv'
+
+# ios
+ios:
+  退出登录:
+    by: id
+    value: 退出登录
+  返回:
+    by: id
+    value: back

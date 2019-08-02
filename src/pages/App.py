@@ -6,8 +6,8 @@
 # @File    : App.py
 # @Software: PyCharm
 
-from pages.BasePage import BasePage
-from pages.MainPage import MainPage
+from src.public.BasePage import BasePage
+from src.pages.MainPage import MainPage
 
 
 class App(BasePage):
@@ -15,3 +15,7 @@ class App(BasePage):
     def main(cls, platform):
         cls.getClient().restart_app(platform)
         return MainPage()
+
+    @classmethod
+    def quit(cls):
+        cls.getClient().quit()

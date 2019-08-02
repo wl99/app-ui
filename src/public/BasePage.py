@@ -5,11 +5,12 @@
 # @说明    : 根页面，主要用于存放公共方法，供其他 页面调用
 # @File    : BasePage.py
 # @Software: PyCharm
+
 from appium.webdriver import WebElement
 from appium.webdriver.webdriver import WebDriver
 from selenium.webdriver.support.wait import WebDriverWait
 
-from driver.Driver import AppClient
+from src.driver.Driver import AppClient
 
 
 class BasePage(object):

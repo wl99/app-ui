@@ -9,16 +9,20 @@
 #  TAG_NAME = "tag name"
 #  CLASS_NAME = "class name"
 #  CSS_SELECTOR = "css selector"
+
 # android
 android:
-  _login_phone:
+  手机登陆:
     by: id
     value: 'login_phone_iv'
 
 # ios
 ios:
-  _login_phone:
+  手机登陆:
     by: xpath
     value: '//XCUIElementTypeButton[@name="my bg but phone"]'
+  设置:
+    by: xpath
+    value: '//XCUIElementTypeButton[@name="set image icon"]'
 
 

@@ -13,12 +13,12 @@
 
 # ios
 ios:
-  _profile_button:
+  我的:
     by: xpath
-    value: '//XCUIElementTypeApplication[@name="保险驾到"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeButton[5]'
+    value: '//XCUIElementTypeApplication[@name="保险驾到"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeButton[4]'
 
 # android
 android:
-  _profile_button:
+  我的:
     by: xpath
-    value: '//android.widget.LinearLayout/android.widget.RelativeLayout[5]/android.widget.LinearLayout/android.widget.ImageView'
+    value: '//android.widget.LinearLayout/android.widget.RelativeLayout[4]/android.widget.LinearLayout/android.widget.ImageView'

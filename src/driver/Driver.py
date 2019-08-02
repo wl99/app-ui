@@ -9,12 +9,13 @@
 from appium import webdriver
 from appium.webdriver.webdriver import WebDriver
 import yaml
+from . import ROOT
 
 
 class AppClient(object):
     driver: WebDriver
 
-    platform: str = ""
+    platform: str = "ios"
 
     @classmethod
     def install_app(cls, platform) -> WebDriver:
@@ -27,7 +28,7 @@ class AppClient(object):
     @classmethod
     def initDriver(cls, key, platform):
         # 加载配置文件并赋值
-        driver_data = yaml.load(open("../data/driver.yaml"), Loader=yaml.FullLoader)
+        driver_data = yaml.load(open(ROOT + "/data/driver.yaml"), Loader=yaml.FullLoader)
         cls.platform = platform
         server = driver_data[key]['server']
         implicitly_wait = driver_data[key]['implicitly_wait']
@@ -36,3 +37,7 @@ class AppClient(object):
         cls.driver = webdriver.Remote(server, caps)
         cls.driver.implicitly_wait(implicitly_wait)
         return cls.driver
+
+    @classmethod
+    def quit(cls):
+        cls.driver.quit()

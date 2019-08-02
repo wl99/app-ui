@@ -11,25 +11,25 @@
 #  CSS_SELECTOR = "css selector"
 # android
 android:
-  _phone_input:
+  手机号码输入:
     by: id
     value: 'login_phone_iv'
 
 # ios
 ios:
-  _phone_input:
+  手机号码输入:
     by: class name
     value: 'XCUIElementTypeStaticText'
-  _clear_btn:
+  X:
     by: id
     value: cha 2
-  _next_btn:
+  下一步:
     by: id
     value: next new
-  _yzm_input:
+  验证码输入:
     by: class name
     value: 'XCUIElementTypeStaticText'
-  _ok_btn:
+  登陆:
     by: id
     value: next ok
 

@@ -8,6 +8,9 @@
 
 import pytest
 
+from src.pages.App import App
+
+
 def pytest_addoption(parser):
     parser.addoption("--platform", action="store", dest="platform", choices=['ios', 'android', 'xcx'],
                      default="android", help="终端默认为Android")
@@ -16,3 +19,10 @@ def pytest_addoption(parser):
 @pytest.fixture(scope="session", autouse=True)
 def platform(request):
     return request.config.getoption("platform")
+
+
+@pytest.fixture(scope="class", autouse=True)
+def app_driver(platform):
+    yield App.main(platform)
+    App.quit()
+
