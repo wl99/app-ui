@@ -12,13 +12,13 @@
 
 # android
 android:
-  手机登陆:
+  手机登录:
     by: id
     value: 'login_phone_iv'
 
 # ios
 ios:
-  手机登陆:
+  手机登录:
     by: xpath
     value: '//XCUIElementTypeButton[@name="my bg but phone"]'
   设置:

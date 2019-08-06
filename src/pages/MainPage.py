@@ -5,6 +5,7 @@
 # @说明     ：app主页
 # @File    : MainPage.py
 # @Software: PyCharm
+import allure
 import yaml
 
 from src.pages.ProfilePage import ProfilePage
@@ -17,6 +18,7 @@ class MainPage(BasePage):
     page_data = yaml.load(open(ROOT + "/data/elements/MainPage.yaml"), Loader=yaml.FullLoader)
     els = page_data[BasePage.getPlatform()]
 
+    @allure.step("点击【我的】")
     def go_to_profile(self):
         self.find(**self.els["我的"]).click()
         return ProfilePage()

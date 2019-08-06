@@ -5,7 +5,7 @@
 # @说明    : 根页面，主要用于存放公共方法，供其他 页面调用
 # @File    : BasePage.py
 # @Software: PyCharm
-
+import allure
 from appium.webdriver import WebElement
 from appium.webdriver.webdriver import WebDriver
 from selenium.webdriver.support.wait import WebDriverWait
@@ -33,6 +33,7 @@ class BasePage(object):
         cls.platform = AppClient().platform
         return cls.platform
 
+    @allure.step("查找参数")
     def find(self, by, value) -> WebElement:
         print("\nby:{0},value:{1}".format(by, value))
         try:

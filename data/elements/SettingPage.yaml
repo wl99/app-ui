@@ -11,3 +11,9 @@ ios:
   返回:
     by: id
     value: back
+  确定:
+    by: id
+    value: 确定
+  取消:
+    by: id
+    value: 取消
