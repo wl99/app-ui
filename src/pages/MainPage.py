@@ -12,13 +12,18 @@ from src.pages.ProfilePage import ProfilePage
 from . import ROOT
 from src.public.BasePage import BasePage
 
+# 加载页面元素配置
+page_data = yaml.load(open(ROOT + "/data/elements/MainPage.yaml"), Loader=yaml.FullLoader)
+
 
 class MainPage(BasePage):
-    # 加载页面元素配置
-    page_data = yaml.load(open(ROOT + "/data/elements/MainPage.yaml"), Loader=yaml.FullLoader)
-    els = page_data[BasePage.getPlatform()]
 
     @allure.step("点击【我的】")
     def go_to_profile(self):
-        self.find(**self.els["我的"]).click()
+        els = page_data[self.platform]
+        self.find(**els["我的"]).click()
         return ProfilePage()
+
+    @allure.step("向上滑动")
+    def swip_up_test(self):
+        self.swip_up(2)

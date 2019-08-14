@@ -9,6 +9,8 @@
 from appium import webdriver
 from appium.webdriver.webdriver import WebDriver
 import yaml
+
+from src.utils.Logs import Log
 from . import ROOT
 
 
@@ -23,6 +25,7 @@ class AppClient(object):
 
     @classmethod
     def restart_app(cls, platform) -> WebDriver:
+        Log.i("=====重启app====")
         return cls.initDriver("restart_app", platform)
 
     @classmethod
@@ -40,4 +43,5 @@ class AppClient(object):
 
     @classmethod
     def quit(cls):
+        Log.i("====退出app====")
         cls.driver.quit()
