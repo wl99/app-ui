@@ -1,7 +1,16 @@
 android:
-  退出登陆:
+  退出登录:
     by: id
-    value: 'login_phone_iv'
+    value: 'com.tenbent.bxjd:id/btn_logout'
+  返回:
+    by: id
+    value: 'com.tenbent.bxjd:id/iv_left'
+  确定:
+    by: id
+    value: 'com.tenbent.bxjd:id/btn_pos'
+  取消:
+    by: id
+    value: 'com.tenbent.bxjd:id/btn_neg'
 
 # ios
 ios:

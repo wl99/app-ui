@@ -12,8 +12,20 @@
 # android
 android:
   手机号码输入:
+    by: class name
+    value: 'android.widget.EditText'
+  X:
     by: id
-    value: 'login_phone_iv'
+    value: 'com.tenbent.bxjd:id/clear_iv'
+  下一步:
+    by: id
+    value: 'com.tenbent.bxjd:id/layout_next'
+  验证码输入:
+    by: class name
+    value: 'android.widget.EditText'
+  登陆:
+    by: id
+    value: 'com.tenbent.bxjd:id/layout_next'
 
 # ios
 ios:

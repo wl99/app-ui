@@ -14,7 +14,10 @@
 android:
   手机登录:
     by: id
-    value: 'login_phone_iv'
+    value: 'com.tenbent.bxjd:id/login_phone_iv'
+  设置:
+    by: id
+    value: 'com.tenbent.bxjd:id/iv_back'
 
 # ios
 ios:
