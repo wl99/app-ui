@@ -8,13 +8,13 @@
 import time
 
 
-class Log:
+class log:
     @staticmethod
     def e(msg, list_msg=None):
         if list_msg is None:
             list_msg = []
         if list_msg:
-            Log.show_list(msg, list_msg, Log.e)
+            log.show_list(msg, list_msg, log.e)
         else:
             ColorLog.show_error(get_now_time() + " [Error]:" + "".join(str(msg)))
 
@@ -23,7 +23,7 @@ class Log:
         if list_msg is None:
             list_msg = []
         if list_msg:
-            Log.show_list(msg, list_msg, Log.w)
+            log.show_list(msg, list_msg, log.w)
         else:
             ColorLog.show_warn(get_now_time() + " [Warn]:" + "".join(str(msg)))
 
@@ -32,7 +32,7 @@ class Log:
         if list_msg is None:
             list_msg = []
         if list_msg:
-            Log.show_list(msg, list_msg, Log.i)
+            log.show_list(msg, list_msg, log.i)
         else:
             ColorLog.show_info(get_now_time() + " [Info]:" + "".join(str(msg)))
 
@@ -41,7 +41,7 @@ class Log:
         if list_msg is None:
             list_msg = []
         if list_msg:
-            Log.show_list(msg, list_msg, Log.d)
+            log.show_list(msg, list_msg, log.d)
         else:
             ColorLog.show_debug(get_now_time() + " [Debug]:" + "".join(str(msg)))
 

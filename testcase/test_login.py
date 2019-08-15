@@ -14,7 +14,7 @@ import pytest
 class TestLogin(object):
 
     @allure.title("登录手机号：{phone}")
-    @pytest.mark.parametrize("phone,yzm", [("13000000000", "1234")])
+    @pytest.mark.parametrize("phone,yzm", [("13000000000", "2234")])
     def test_login(self, app_driver, phone, yzm):
         app_driver.swip_up_test()
         login_page = app_driver.go_to_profile().go_to_login_by_phone()

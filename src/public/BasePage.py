@@ -10,10 +10,12 @@ import time
 import allure
 from appium.webdriver import WebElement
 from appium.webdriver.webdriver import WebDriver
+from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 
 from src.driver.Driver import AppClient
-from src.utils.Logs import Log
+from src.utils.Logs import log
 
 
 class BasePage(object):
@@ -40,23 +42,44 @@ class BasePage(object):
 
     @allure.step("查找参数")
     def find(self, by, value, timeout=10) -> WebElement:
-        Log.i("查找方式:{0}，查找值:{1}".format(by, value))
+        self._find(by, value, timeout)
+
+    @allure.step("查找文本")
+    def text(self, text, timeout=10) -> WebElement:
+        return self._find(By.XPATH, "//*[@text='" + text + "']", timeout)
+
+    def _find(self, by, value, timeout=10) -> WebElement:
+        log.i("查找方式:{0}，查找值:{1}".format(by, value))
         try:
             element: WebElement = WebDriverWait(self.driver, timeout).until(lambda x: x.find_element(by, value))
+            print(element)
             return element
         except Exception as e:
-            Log.e("通过方式{0}未查找到元素{1}".format(by, value))
-            Log.e(e)
+            log.e("通过方式{0}未查找到元素{1}".format(by, value))
+            log.e(e)
+            # 检查是否是因为权限弹窗导致无法查找元素
+            if self.click_shoot_windows():
+                log.i("出现权限弹窗，允许后重新查找元素")
+                element: WebElement = WebDriverWait(self.driver, timeout).until(lambda x: x.find_element(by, value))
+                return element
+            return False
+        except TimeoutException as t:
+            log.e("查找超时！！")
+            log.e(t)
             return False
 
-    @allure.step("页面截图")
     def screen_shot(self, name: str):
         self.sleep(2)
         png_byte = self.driver.get_screenshot_as_png()
         allure.attach(png_byte, name, allure.attachment_type.PNG)
 
+    def get_logcat(self, name: str):
+        logcat = self.driver.get_log('logcat')
+        c = '\n'.join([i['message'] for i in logcat])
+        allure.attach(c, name, allure.attachment_type.TEXT)
+
     def finds(self, by, value) -> WebElement:
-        return  self.driver.find_elements(by, value)
+        return self.driver.find_elements(by, value)
 
     def click(self, by, value, timeout=10):
         self.find(by, value, timeout).click()
@@ -68,7 +91,7 @@ class BasePage(object):
         element.click()  # Let the element in focus.
         # element.clear()
         element.send_keys(sendStr)
-        Log.i("输入数据：{}".format(sendStr))
+        log.i("输入数据：{}".format(sendStr))
         return self
 
     @staticmethod
@@ -93,7 +116,7 @@ class BasePage(object):
                         break
                 except:
                     pass
-        Log.i("[滑动]向下刷新 ")
+        log.i("[滑动]向下刷新 ")
 
     def swip_up(self, count=1, method=None, speed=1000):
         """ 向上刷新
@@ -116,7 +139,7 @@ class BasePage(object):
                         break
                 except:
                     pass
-        Log.i("[滑动]向上刷新 ")
+        log.i("[滑动]向上刷新 ")
 
     def swip_left(self, height=0.5, count=1, speed=1000):
         """ 向左滑动
@@ -129,7 +152,7 @@ class BasePage(object):
             self.sleep(1)
             self.driver.swipe(self.width * 7 / 8, self.height * height, self.width / 8, self.height * height, speed)
             self.sleep(2)
-            Log.i("[滑动]向左滑动")
+            log.i("[滑动]向左滑动")
 
     def swip_right(self, height=0.5, count=1, speed=1000):
         """向右滑动
@@ -142,4 +165,26 @@ class BasePage(object):
             self.sleep(1)
             self.driver.swipe(self.width / 8, self.height * height, self.width * 7 / 8, self.height * height, speed)
             self.sleep(2)
-            Log.i("[滑动]向右滑动 ")
+            log.i("[滑动]向右滑动 ")
+
+    def click_shoot_windows(self):
+        """
+        :return:检测权限窗口
+        """
+        try:
+            els = self.driver.find_elements(By.CLASS_NAME, 'android.widget.Button')
+            print(els)
+            for el in els:
+                text1 = el.text
+                if text1 == '允许':
+                    el.click()
+                    return True
+                elif text1 == '始终允许':
+                    el.click()
+                    return True
+                elif text1 == '确定':
+                    el.click()
+                    return True
+            return False
+        except:
+            return False

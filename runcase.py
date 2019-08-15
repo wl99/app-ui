@@ -12,7 +12,6 @@ import sys
 import pytest
 import logging
 
-
 logging.basicConfig(level=logging.INFO,
                     format='[%(levelname)s %(asctime)s %(filename)s %(funcName)s line:%(lineno)d]: %(message)s',
                     datefmt='%y%m%d %H:%M:%S')
@@ -27,6 +26,7 @@ if __name__ == '__main__':
 
     xml_report_path = os.path.join(ROOT, 'report', 'xml')
     html_report_path = os.path.join(ROOT, 'report', 'html')
+    # , '--reruns', '1'
     pytest.main(['-s', '--platform', platform, '--alluredir', xml_report_path, testcase])
     cmd = 'allure generate --clean {xml} -o {html}'.format(xml=xml_report_path, html=html_report_path)
     logging.info(cmd)
