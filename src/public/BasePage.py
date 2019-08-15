@@ -10,7 +10,6 @@ import time
 import allure
 from appium.webdriver import WebElement
 from appium.webdriver.webdriver import WebDriver
-from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 
@@ -52,23 +51,21 @@ class BasePage(object):
         log.i("查找方式:{0}，查找值:{1}".format(by, value))
         try:
             element: WebElement = WebDriverWait(self.driver, timeout).until(lambda x: x.find_element(by, value))
-            print(element)
             return element
         except Exception as e:
+            print(e)
             log.e("通过方式{0}未查找到元素{1}".format(by, value))
             log.e(e)
+            # 截图
+            self.screen_shot("未找到元素")
             # 检查是否是因为权限弹窗导致无法查找元素
             if self.click_shoot_windows():
                 log.i("出现权限弹窗，允许后重新查找元素")
-                element: WebElement = WebDriverWait(self.driver, timeout).until(lambda x: x.find_element(by, value))
-                return element
-            return False
-        except TimeoutException as t:
-            log.e("查找超时！！")
-            log.e(t)
+                return self._find(by, value)
             return False
 
     def screen_shot(self, name: str):
+        log.i("截图：{}".format(name))
         self.sleep(2)
         png_byte = self.driver.get_screenshot_as_png()
         allure.attach(png_byte, name, allure.attachment_type.PNG)
@@ -76,6 +73,7 @@ class BasePage(object):
     def get_logcat(self, name: str):
         logcat = self.driver.get_log('logcat')
         c = '\n'.join([i['message'] for i in logcat])
+        log.i("获取日志：{}".format(name))
         allure.attach(c, name, allure.attachment_type.TEXT)
 
     def finds(self, by, value) -> WebElement:
@@ -173,7 +171,6 @@ class BasePage(object):
         """
         try:
             els = self.driver.find_elements(By.CLASS_NAME, 'android.widget.Button')
-            print(els)
             for el in els:
                 text1 = el.text
                 if text1 == '允许':
