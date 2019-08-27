@@ -10,8 +10,8 @@ from appium import webdriver
 from appium.webdriver.webdriver import WebDriver
 import yaml
 
+from data import DRIVER_FILE
 from src.utils.Logs import log
-from . import ROOT
 
 
 class AppClient(object):
@@ -31,7 +31,7 @@ class AppClient(object):
     @classmethod
     def initDriver(cls, key, platform):
         # 加载配置文件并赋值
-        driver_data = yaml.load(open(ROOT + "/data/driver.yaml"), Loader=yaml.FullLoader)
+        driver_data = yaml.load(open(DRIVER_FILE), Loader=yaml.FullLoader)
         cls.platform = platform
         server = driver_data[key]['server']
         implicitly_wait = driver_data[key]['implicitly_wait']

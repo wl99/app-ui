@@ -5,7 +5,3 @@
 # @说明     ：
 # @File    : __init__.py.py
 # @Software: PyCharm
-import os
-
-routes = os.path.abspath(__file__).split('/')
-ROOT = '/'.join(routes[:routes.index('app-ui') + 1])

@@ -8,13 +8,13 @@
 import allure
 import yaml
 
+from data import PROFILE_PAGE_FILE
 from src.pages.LoginPage import LoginPage
 from src.pages.SettingPage import SettingPage
-from . import ROOT
 from src.public.BasePage import BasePage
 
 # 加载页面元素配置
-page_data = yaml.load(open(ROOT + "/data/elements/ProfilePage.yaml"), Loader=yaml.FullLoader)
+page_data = yaml.load(open(PROFILE_PAGE_FILE), Loader=yaml.FullLoader)
 
 
 class ProfilePage(BasePage):

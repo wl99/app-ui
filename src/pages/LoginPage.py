@@ -8,11 +8,11 @@
 import allure
 import yaml
 
-from . import ROOT
+from data import LOGIN_PAGE_FILE
 from src.public.BasePage import BasePage
 
 # 加载页面元素配置
-page_data = yaml.load(open(ROOT + "/data/elements/LoginPage.yaml"), Loader=yaml.FullLoader)
+page_data = yaml.load(open(LOGIN_PAGE_FILE), Loader=yaml.FullLoader)
 
 
 class LoginPage(BasePage):
