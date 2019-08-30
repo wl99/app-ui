@@ -16,16 +16,21 @@ logging.basicConfig(level=logging.INFO,
                     format='[%(levelname)s %(asctime)s %(filename)s %(funcName)s line:%(lineno)d]: %(message)s',
                     datefmt='%y%m%d %H:%M:%S')
 
-routes = os.path.abspath(__file__).split('/')
-ROOT = '/'.join(routes[:routes.index('app-ui') + 1])
+# 定义数据根目录
+ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 if __name__ == '__main__':
     testcase = sys.argv[1]
     platform = sys.argv[2]
     logging.info(testcase)
+    # todo 根据现有的android设备，开启appium服务时加载对应版本的ChromeDriver
+    # 1、获取要使用的设备，使用语句查询设备中的ChromeDriver版本
+    # adb shell dumpsys package com.google.android.webview | grep versionName
+    # 2、使用命令启动appium，并传入对应版本参数
+    # appium --chromedriver-executable /path/to/my/chromedriver
 
-    xml_report_path = os.path.join(ROOT, 'report', 'xml')
-    html_report_path = os.path.join(ROOT, 'report', 'html')
+    xml_report_path = os.path.join(ROOT_DIR, 'report', 'xml')
+    html_report_path = os.path.join(ROOT_DIR, 'report', 'html')
     # , '--reruns', '1'
     pytest.main(['-s', '--platform', platform, '--alluredir', xml_report_path, testcase])
     cmd = 'allure generate --clean {xml} -o {html}'.format(xml=xml_report_path, html=html_report_path)

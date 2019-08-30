@@ -22,10 +22,12 @@ def pytest_addoption(parser):
 def platform(request):
     return request.config.getoption("platform")
 
+
 @pytest.fixture(scope="class", autouse=True)
-def app_driver(platform):
+def app(platform):
     yield App.main(platform)
     # App.quit()
+
 
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
 def pytest_runtest_makereport(item, call):
@@ -39,4 +41,6 @@ def pytest_runtest_makereport(item, call):
 
 def pytest_runtest_call(item):
     # 每条用例代码执行之前，非用例执行之前
-    allure.dynamic.description('用例开始时间：{}'.format(datetime.datetime.now()))
+    allure.dynamic.description("""
+    用例开始时间：{0}
+    执行终端：{1}""".format(datetime.datetime.now(), App().platform))

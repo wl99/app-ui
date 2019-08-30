@@ -29,6 +29,10 @@ restart_app:
       autoGrantPermissions: true
       noReset: true
       automationName: UiAutomator2
+      #autoWebview: true
+      #browserName: Chrome
+#      chromeOptions:
+#        androidPackage: com.android.chrome
       #unicodeKeyboard: true
       #resetKeyboard: true
     ios:

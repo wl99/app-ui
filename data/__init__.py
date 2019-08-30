@@ -19,4 +19,4 @@ LOGIN_PAGE_FILE = os.path.join(ELEMENTS_PATH, 'LoginPage.yaml')
 MAIN_PAGE_FILE = os.path.join(ELEMENTS_PATH, 'MainPage.yaml')
 PROFILE_PAGE_FILE = os.path.join(ELEMENTS_PATH, 'ProfilePage.yaml')
 SETTING_PAGE_FILE = os.path.join(ELEMENTS_PATH, 'SettingPage.yaml')
-
+ARTICLE_PAGE_FILE = os.path.join(ELEMENTS_PATH, 'ArticlePage.yaml')

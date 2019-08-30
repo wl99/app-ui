@@ -9,6 +9,7 @@ import allure
 import yaml
 
 from data import MAIN_PAGE_FILE
+from src.pages.ArticlePage import ArticlePage
 from src.pages.ProfilePage import ProfilePage
 from src.public.BasePage import BasePage
 
@@ -27,3 +28,12 @@ class MainPage(BasePage):
     @allure.step("向上滑动")
     def swip_up_test(self):
         self.swip_up(2)
+
+    def go_to_article(self):
+        els = page_data[self.platform]
+        self.swip_up_test()
+        self.text("经验").click()
+        el = self.finds(**els["文章"])
+        if el:
+            el[0].click()
+        return ArticlePage()

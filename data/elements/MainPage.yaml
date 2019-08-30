@@ -22,3 +22,6 @@ android:
   我的:
     by: xpath
     value: '//android.widget.LinearLayout/android.widget.RelativeLayout[4]/android.widget.LinearLayout/android.widget.ImageView'
+  文章:
+    by: id
+    value: 'com.tenbent.bxjd:id/title_tv'
